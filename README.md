@@ -27,7 +27,7 @@ public class BananaReplacer implements Replacer {
 }
 ```
 
-**index.html**
+**index.html**\
 This is placed in the html/index.html path in the resources folder.\
 You can put any html, javascript, or css that you wish in here.
 ```html
