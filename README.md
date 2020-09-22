@@ -1,6 +1,6 @@
 # WebServer
 Welcome to the **Java Webserver** repository.\
-This is a lightweight java library allowing you to create html & css webservers in java.\
+This is a lightweight java library allowing you to create html & css webservers in java.
 
 There will most likely be more updates to come to this library in the future.
 
