@@ -18,6 +18,10 @@ public abstract class WebAPI {
         }
     }
 
+    public void setToken(String token) {
+        APIHandler.setToken(token);
+    }
+
     public void enable() {
         if(port == 0) {
             System.out.println("[Website] You cannot enable the webapi until you have set a port!");

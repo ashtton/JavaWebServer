@@ -17,8 +17,15 @@ public abstract class GetHandler extends APIHandler {
     public void handle(HttpExchange he) throws IOException {
         InputStreamReader isr = new InputStreamReader(he.getRequestBody(), StandardCharsets.UTF_8);
 
-        String response = requested(Document.parse(URLDecoder.decode(new BufferedReader(isr).readLine(), System.getProperty("file.encoding")))).toJson();
-        he.sendResponseHeaders(200, response.length());
+        String response;
+        Document document = Document.parse(URLDecoder.decode(new BufferedReader(isr).readLine(), System.getProperty("file.encoding")));
+        if(!APIHandler.getToken().equals("") && !document.getString("TOKEN").equals(APIHandler.getToken())) {
+            response = "Invalid authentication token";
+            he.sendResponseHeaders(403, response.length());
+        } else {
+            response = requested(document).toJson();
+            he.sendResponseHeaders(200, response.length());
+        }
 
         OutputStream os = he.getResponseBody();
         os.write(response.getBytes());

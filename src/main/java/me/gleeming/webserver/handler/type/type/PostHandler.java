@@ -16,7 +16,8 @@ public abstract class PostHandler extends APIHandler {
     public void handle(HttpExchange he) throws IOException {
         InputStreamReader isr = new InputStreamReader(he.getRequestBody(), StandardCharsets.UTF_8);
 
-        posted(Document.parse(URLDecoder.decode(new BufferedReader(isr).readLine(), System.getProperty("file.encoding"))));
+        Document document = Document.parse(URLDecoder.decode(new BufferedReader(isr).readLine(), System.getProperty("file.encoding")));
+        if(APIHandler.getToken().equals("") || document.getString("TOKEN").equals(APIHandler.getToken())) posted(document);
     }
 
     public abstract void posted(Document document);
