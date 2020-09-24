@@ -2,20 +2,21 @@ package me.gleeming.webserver;
 
 import com.sun.net.httpserver.HttpServer;
 import lombok.Getter;
-import me.gleeming.webserver.handler.Handler;
-import me.gleeming.webserver.pages.Page;
 import me.gleeming.webserver.replacer.Replacer;
 
 import java.net.InetSocketAddress;
 import java.util.HashMap;
-import java.util.List;
 
 public class WebServer {
     @Getter private static WebServer instance;
     @Getter private final HashMap<String, Replacer> replacers = new HashMap<>();
     @Getter private HttpServer server;
-    public WebServer(int port) {
+
+    @Getter private boolean api;
+    public WebServer(int port, boolean api) {
         try {
+            this.api = api;
+
             instance = this;
             server = HttpServer.create(new InetSocketAddress(port), 0);
 

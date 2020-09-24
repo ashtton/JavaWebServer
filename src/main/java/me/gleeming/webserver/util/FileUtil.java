@@ -2,7 +2,6 @@ package me.gleeming.webserver.util;
 
 import me.gleeming.webserver.WebServer;
 import org.apache.commons.io.IOUtils;
-import sun.nio.ch.IOUtil;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -18,8 +17,11 @@ public class FileUtil {
                 for (String string : WebServer.getInstance().getReplacers().keySet()) {
                     s = s.replaceAll("\\{" + string + "\\}", WebServer.getInstance().getReplacers().get(string).replace(string));
                 }
+
+
                 return s;
             }
+
 
         } catch (IOException e) {
             e.printStackTrace();

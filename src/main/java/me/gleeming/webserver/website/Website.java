@@ -29,7 +29,7 @@ public abstract class Website {
         if(port == 0) {
             System.out.println("[Website] You cannot enable the website until you have set a port!");
         } else {
-            new WebServer(port);
+            new WebServer(port, false);
         }
     }
 }
