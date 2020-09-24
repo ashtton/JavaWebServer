@@ -1,10 +1,10 @@
-#WebServer
+# WebServer
 Welcome to the **Java Webserver** repository.\
-This is a lightweight java library allowing you to create html & css webservers in java.\
+This is a lightweight java library allowing you to create html & css webservers in java.
 
 There will most likely be more updates to come to this library in the future.
 
-####How to use
+## How to use
 **Main Class**
 ```java
 public class Test extends Website {
@@ -27,7 +27,7 @@ public class BananaReplacer implements Replacer {
 }
 ```
 
-**index.html**
+**index.html**\
 This is placed in the html/index.html path in the resources folder.\
 You can put any html, javascript, or css that you wish in here.
 ```html
