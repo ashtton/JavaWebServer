@@ -32,11 +32,13 @@ public class HTTPCreator {
             HttpURLConnection con = (HttpURLConnection) obj.openConnection();
             con.setRequestProperty("User-Agent", "Mozilla/5.0");
 
-            con.setDoOutput(true);
-            DataOutputStream out = new DataOutputStream(con.getOutputStream());
-            out.writeBytes(URLEncoder.encode(requesting.toJson()));
-            out.flush();
-            out.close();
+            if(requesting != null) {
+                con.setDoOutput(true);
+                DataOutputStream out = new DataOutputStream(con.getOutputStream());
+                out.writeBytes(URLEncoder.encode(requesting.toJson()));
+                out.flush();
+                out.close();
+            }
 
             BufferedReader in = new BufferedReader(
                     new InputStreamReader(con.getInputStream()));
@@ -59,7 +61,7 @@ public class HTTPCreator {
 
     public void performPOST() {
         try {
-            URL obj = new URL((!address.startsWith("http") ? "http://" : "") + address);
+            URL obj = new URL(!address.startsWith("http") ? "http://" : "" + address);
 
             HttpURLConnection con = (HttpURLConnection) obj.openConnection();
             con.setRequestProperty("User-Agent", "Mozilla/5.0");

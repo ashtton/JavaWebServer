@@ -11,11 +11,14 @@ import java.io.OutputStream;
 import java.net.URLDecoder;
 import java.nio.charset.StandardCharsets;
 
-public abstract class GetHandler extends APIHandler {
-    public GetHandler(String reference) { super(reference); }
+public abstract class DocumentGetHandler extends APIHandler {
+    public DocumentGetHandler(String reference) { super(reference); }
 
     public void handle(HttpExchange he) throws IOException {
         InputStreamReader isr = new InputStreamReader(he.getRequestBody(), StandardCharsets.UTF_8);
+
+        he.getResponseHeaders().add("Content-type", "application/json");
+        he.getResponseHeaders().add("Access-Control-Allow-Origin", "*");
 
         String response;
         Document document = Document.parse(URLDecoder.decode(new BufferedReader(isr).readLine(), System.getProperty("file.encoding")));
@@ -30,6 +33,8 @@ public abstract class GetHandler extends APIHandler {
         OutputStream os = he.getResponseBody();
         os.write(response.getBytes());
         os.close();
+
+        he.close();
     }
 
     public abstract Document requested(Document document);

@@ -10,14 +10,16 @@ import java.io.InputStreamReader;
 import java.net.URLDecoder;
 import java.nio.charset.StandardCharsets;
 
-public abstract class PostHandler extends APIHandler {
-    public PostHandler(String reference) { super(reference); }
+public abstract class DocumentPostHandler extends APIHandler {
+    public DocumentPostHandler(String reference) { super(reference); }
 
     public void handle(HttpExchange he) throws IOException {
         InputStreamReader isr = new InputStreamReader(he.getRequestBody(), StandardCharsets.UTF_8);
 
         Document document = Document.parse(URLDecoder.decode(new BufferedReader(isr).readLine(), System.getProperty("file.encoding")));
         if(APIHandler.getToken().equals("") || document.getString("TOKEN").equals(APIHandler.getToken())) posted(document);
+
+        he.close();
     }
 
     public abstract void posted(Document document);
