@@ -13,7 +13,7 @@ import java.net.URL;
 import java.net.URLEncoder;
 
 public class HTTPCreator {
-    @Getter @Setter private static String token;
+    @Getter @Setter private static String token = "";
 
     @Getter private final String address;
     @Getter private final Document requesting;
