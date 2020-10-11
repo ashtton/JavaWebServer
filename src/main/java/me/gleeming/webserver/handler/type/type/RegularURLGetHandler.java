@@ -15,7 +15,6 @@ public abstract class RegularURLGetHandler extends APIHandler {
     public void handle(HttpExchange he) throws IOException {
         Headers headers = he.getResponseHeaders();
         headers.add("Content-type", "application/json");
-//        headers.add("NIGGER", "NIGGER");
         headers.add("Access-Control-Allow-Origin", "*");
 
         String response = requested(he.getRequestURI().toString().substring(getReference().length() + 1)).toJson();
