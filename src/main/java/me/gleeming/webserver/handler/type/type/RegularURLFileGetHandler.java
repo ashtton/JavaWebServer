@@ -16,7 +16,7 @@ public abstract class RegularURLFileGetHandler extends APIHandler {
         Headers headers = he.getResponseHeaders();
         headers.add("Access-Control-Allow-Origin", "*");
 
-        byte[] bytes = Files.readAllBytes(requested("").toPath());
+        byte[] bytes = Files.readAllBytes(requested(he.getRequestURI().toString().substring(getReference().length() + 1)).toPath());
         he.sendResponseHeaders(200, bytes.length);
 
         try (OutputStream os = he.getResponseBody()) { os.write(bytes); }
