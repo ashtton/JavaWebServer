@@ -5,6 +5,36 @@ This is a lightweight java library allowing you to create html & css webservers 
 There will most likely be more updates to come to this library in the future.
 
 ## How to use
+
+### Making a webapi
+**Main Class**
+```java
+public class Test extends WebAPI {
+    public Test() {
+        setPort(256);
+        enable();
+
+        addHandler(new TestHandler());
+    }
+}
+```
+
+**TestHandler**
+```java
+public class TestHandler extends RegularURLGetRequest() {
+    /* There are many different requests to choose from in this API */
+    public TestHandler() { super("testhandler"); // The super method will be the context, in this instance it means website:port/testhandler }
+
+    public Document requested(String s) {
+        String[] split = s.split("/");
+
+        if(split[0].equalsIgnoreCase("secretKey")) return new Document("YOU-WIN", "THIS IS A JSON DOCUMENT").append("YOU-STILL-WIN", "THE LIBRARY IS BSON");
+        else return new Document("ERROR", "402 - Unauthorized");
+    }   
+}
+```
+
+### Making a website with html & css
 **Main Class**
 ```java
 public class Test extends Website {
